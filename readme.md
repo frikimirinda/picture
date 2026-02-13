@@ -1,7 +1,7 @@
 # Picture.js
 
 [![GitHub Repo](https://img.shields.io/badge/GitHub-gray?logo=github)](https://github.com/frikimirinda/picture)
-[![GitHub Repo](https://img.shields.io/badge/npm-gray?logo=npm)](https://github.com/frikimirinda/picture)
+[![GitHub Repo](https://img.shields.io/badge/npm-gray?logo=npm)](https://www.npmjs.com/package/@frikimirinda/picture)
 
 
 
