@@ -1,0 +1,45 @@
+{
+  "name": "@frikimirinda/picture",
+  "version": "1.0.0",
+  "description": "A powerful JavaScript class for formatting, deformatting, and validating data using picture strings (compact format descriptors for strings, numbers, dates, times, and patterns)",
+  "main": "src/picture.js",
+  "module": "src/picture.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/picture.js"
+    }
+  },
+  "files": [
+    "src/",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "test": "echo \"No tests configured\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frikimirinda/picture.git"
+  },
+  "keywords": [
+    "picture",
+    "format",
+    "deformat",
+    "validate",
+    "validation",
+    "number-format",
+    "date-format",
+    "time-format",
+    "pattern",
+    "input-mask",
+    "mask",
+    "string-format"
+  ],
+  "author": "frikimirinda",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/frikimirinda/picture/issues"
+  },
+  "homepage": "https://github.com/frikimirinda/picture#readme"
+}

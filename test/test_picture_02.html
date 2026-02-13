@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mirinda.es - Picture tester - picture.js</title>
+    <link rel="stylesheet" href="test.css" type="text/css" media="all">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
+        h1 { text-align: center; margin-bottom: 30px; color: #1a1a2e; }
+        h2 { margin: 0 0 15px 0; color: #16213e; border-bottom: 2px solid #0f3460; padding-bottom: 8px; }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .card { background: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+        th { background: #16213e; color: #fff; padding: 8px 10px; text-align: left; }
+        td { padding: 7px 10px; border-bottom: 1px solid #e0e0e0; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .pic { font-family: monospace; color: #0f3460; font-weight: bold; }
+        .data { font-family: monospace; color: #555; }
+        .result { font-family: monospace; color: #266117; font-weight: bold; }
+        .ok { color: #27ae60; }
+        .fail { color: #e74c3c; }
+        .section-full { grid-column: 1 / -1; }
+    </style>
+</head>
+<body>
+
+<a href="https://github.com/frikimirinda/picture" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#2563eb;; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+<div class="grid">
+
+    <header class="logos" style="display: flex; justify-content: space-between; align-items: center;">
+        <img src="assets/logo_pt.svg" style="width: 30%;">
+        <img src="assets/mirinda_es.svg" style="width: 15%;">
+    </header>
+
+
+    <div class="samples">
+        <h3>testing picture.js</h3>
+    </div>
+
+
+    <!-- NUMBERS -->
+    <div class="card">
+        <h2>N - Numbers</h2>
+        <table>
+            <tr><th>Data</th><th>Picture</th><th>format()</th><th>deformat()</th><th>info</th></tr>
+            <tbody id="tbNumbers"></tbody>
+        </table>
+    </div>
+
+    <!-- STRINGS -->
+    <div class="card">
+        <h2>S - Strings</h2>
+        <table>
+            <tr><th>Data</th><th>Picture</th><th>format()</th><th>deformat()</th></tr>
+            <tbody id="tbStrings"></tbody>
+        </table>
+    </div>
+
+    <!-- DATES -->
+    <div class="card">
+        <h2>D - Dates</h2>
+        <table>
+            <tr><th>Data</th><th>Picture</th><th>LNG</th><th>format()</th></tr>
+            <tbody id="tbDates"></tbody>
+        </table>
+    </div>
+
+    <!-- TIMES -->
+    <div class="card">
+        <h2>T - Times</h2>
+        <table>
+            <tr><th>Data</th><th>Picture</th><th>format()</th></tr>
+            <tbody id="tbTimes"></tbody>
+        </table>
+    </div>
+
+    <!-- PATTERNS -->
+    <div class="card">
+        <h2>P - Patterns</h2>
+        <table>
+            <tr><th>Data</th><th>Picture</th><th>format()</th><th>deformat()</th></tr>
+            <tbody id="tbPatterns"></tbody>
+        </table>
+    </div>
+
+    <!-- VALIDATION -->
+    <div class="card">
+        <h2>isValid() / picInfo()</h2>
+        <table>
+            <tr><th>Data</th><th>Picture</th><th>isValid()</th></tr>
+            <tbody id="tbValidation"></tbody>
+        </table>
+    </div>
+</div>
+
+<script type="module">
+    import { Picture } from "../src/picture.js";
+    //import { Picture } from "../dist/picture.min.of.js";     // production 
+    window.Picture = Picture; 
+
+// ===================== TEST DATA =====================
+
+const numberTests = [
+    [1234.56,       'N10',                 'Integer without decimals'],
+    [1234.56,       'N10,2',               'With decimals (comma)'],
+    [1234.56,       'N.10,2',              'Thousands with dot, decimals with comma'],
+    [1234.56,       'N,10.2',              'Thousands with comma, decimals with dot'],
+    [42,            'N010',                'Zero-padded'],
+    [12345,         'N._10',               'Thousands with dot + Underscore-padded'],
+    [12345,         'N*10',                'Asterisk-padded'],    
+    [-1500.75,      'N.10,2',              'Negative number'],
+    [-1500.75,      'N.[>10,2',            'Negative with sign on the right'],
+    [-1500.75,      'N.(10,2',             'Negative with parentheses'],
+    [0,             'N10,2B',              'Blank if zero'],
+    [99.9,          'N10,2',               'Incomplete decimals'],
+    [1234.5,        'N€<.10,2',            'With € currency in front'],
+    [1234.5,        'N$<,10.2',            'With $ currency in front'],
+    [1234.5,        'N€>.10,2',            'With € currency after'],
+    [85.5,          'N%>10,1',             'With percentage after'],
+];
+
+const stringTests = [
+    ['hola mundo',      'S20',              'No transformation'],
+    ['hola mundo',      'S20U',            'Uppercase'],
+    ['HOLA MUNDO',      'S20L',            'Lowercase'],
+    ['hola mundo',      'S20C',            'Capitalize first'],
+    ['hola mundo',      'S20A',            'Capitalize all'],
+    ['texto largo aqui','S5',              'Truncate to 5 chars'],
+    ['ABC',             'S10L',            'Upper to lower']
+];
+
+const dateTests = [
+    ['2025-03-15',  'D1',  'ES',            'dd/mm/YYYY'],
+    ['2025-03-15',  'D2',  'ES',            'dd/mm/yy'],
+    ['2025-03-15',  'D3',  'ES',            'mm/dd/YYYY'],
+    ['2025-03-15',  'D5',  'ES',            'YYYY/mm/dd'],
+    ['2025-03-15',  'D1-', 'ES',            'dd-mm-YYYY (sep -)'],
+    ['2025-03-15',  'D1.', 'ES',            'dd.mm.YYYY (sep .)'],
+    ['2025-12-25',  'D7',  'ES',            'Full day with month (ES)'],
+    ['2025-12-25',  'D8',  'ES',            'Day with week of year (ES)'],
+    ['2025-12-25',  'D9',  'EN',            'Full day with month (EN)'],
+    ['2025-12-25',  'D10',  'EN',           'Day with week of year (EN)'],
+    ['2025-03-15',  'D11',  'EN',           'Saturday 15 of March 2025']
+];
+
+const timeTests = [
+    ['1430',      'T1',                      'HH:mm:ss'],
+    ['143055',    'T1',                      'HH:mm:ss'],
+    ['14:30',     'T2',                      'HH:mm'],
+    ['14:30:45',  'T1',                      'HH:mm:ss'],
+    ['14:30:45',  'T2',                      'HH:mm'],
+    ['09:05:00',  'T1',                      'With zeros'],
+    ['14:30:45',  'T1.',                     'Dot separator'],
+    ['14:30:45',  'T1-',                     'Dash separator']
+];
+
+const patternTests = [
+    ['01234567Z',     'P########~-~A',       'Spanish DNI'],
+    ['600123456',   'P###~-~###~-~###',      'Phone number'],
+    ['34600123456', 'P+(##) ### ### ###',    'Phone number'],
+    ['5678XKL',     'P#### AAA',             'License plate'],
+    ['5678XKL',     'P#### aaa',             'License plate lowercase'],
+    ['1234',        'P##~:~##',              'Time as pattern'],
+    ['28004',       'P#####',                'Zip/Postal code']
+];
+
+const validationTests = [
+//.   value ,       picture,    expected result
+    ['12345',       'N10',      true],
+    ['abc',         'N10',      false],
+    ['12.34',       'N10,2',    true],
+    ['hola',        'S10',      true],
+    ['0130',        'S4',       true],
+    ['01302',       'S4',       false],
+    ['2025-03-15',  'D1',       false],
+    ['15/03/2025',  'D1',       true],
+    ['14:30',       'T2',       true],
+    ['14:60',       'T2',       false],
+    ['123-123-X',   'P###~-~###~-~A',   true],
+    ['123-123-4',   'P###~-~###~-~A',   false],
+    ['3-123-z',     'P<<#~-~###~-~a',   true],
+
+];
+
+// ===================== RENDER =====================
+
+function renderRow(tb, cols) {
+    tb.innerHTML += '<tr>' + cols.map(c => `<td class="${c.cls||''}">${c.v}</td>`).join('') + '</tr>';
+}
+
+function renderNumbers() {
+    const tb = document.getElementById('tbNumbers');
+    numberTests.forEach(([data, pic, info]) => {
+        let formatted = '', deformatted = '';
+        try { formatted = Picture.format(data, pic); } catch(e) { formatted = '<span class="fail">ERR: '+e.message+'</span>'; }
+        try { deformatted = Picture.deformat(formatted, pic); } catch(e) { deformatted = '<span class="fail">ERR: '+e.message+'</span>'; }
+        renderRow(tb, [
+            {v:data, cls:'data'}, {v:pic, cls:'pic'}, {v:formatted, cls:'result'}, {v:deformatted, cls:'result'} , {v:info, cls:'result'}
+        ]);
+    });
+}
+
+function renderStrings() {
+    const tb = document.getElementById('tbStrings');
+    stringTests.forEach(([data, pic]) => {
+        let formatted = '', deformatted = '';
+        try { formatted = Picture.format(data, pic); } catch(e) { formatted = '<span class="fail">ERR: '+e.message+'</span>'; }
+        try { deformatted = Picture.deformat(formatted, pic); } catch(e) { deformatted = '<span class="fail">ERR: '+e.message+'</span>'; }
+        renderRow(tb, [
+            {v:data, cls:'data'}, {v:pic, cls:'pic'}, {v:formatted, cls:'result'}, {v:deformatted, cls:'result'}
+        ]);
+    });
+}
+
+function renderDates() {
+    const tb = document.getElementById('tbDates');
+    const originalLng = Picture.DATE_LNG;
+    dateTests.forEach(([data, pic, lng]) => {
+        let formatted = '';
+        try { Picture.DATE_LNG = lng || 'ES'; formatted = Picture.format(data, pic); } catch(e) { formatted = '<span class="fail">ERR: '+e.message+'</span>'; }
+        renderRow(tb, [
+            {v:data, cls:'data'}, {v:pic, cls:'pic'}, {v:lng||'ES', cls:'data'}, {v:formatted, cls:'result'}
+        ]);
+    });
+    Picture.DATE_LNG = originalLng;
+}
+
+function renderTimes() {
+    const tb = document.getElementById('tbTimes');
+    timeTests.forEach(([data, pic]) => {
+        let formatted = '';
+        try { formatted = Picture.format(data, pic); } catch(e) { formatted = '<span class="fail">ERR: '+e.message+'</span>'; }
+        renderRow(tb, [
+            {v:data, cls:'data'}, {v:pic, cls:'pic'}, {v:formatted, cls:'result'}
+        ]);
+    });
+}
+
+function renderPatterns() {
+    const tb = document.getElementById('tbPatterns');
+    patternTests.forEach(([data, pic]) => {
+        let formatted = '', deformatted = '';
+        try { formatted = Picture.format(data, pic); } catch(e) { formatted = '<span class="fail">ERR: '+e.message+'</span>'; }
+        try { deformatted = Picture.deformat(formatted, pic); } catch(e) { deformatted = '<span class="fail">ERR: '+e.message+'</span>'; }
+        renderRow(tb, [
+            {v:data, cls:'data'}, {v:pic, cls:'pic'}, {v:formatted, cls:'result'}, {v:deformatted, cls:'result'}
+        ]);
+    });
+}
+
+function renderValidation() {
+    const tb = document.getElementById('tbValidation');
+    validationTests.forEach(([data, pic, expected]) => {
+        let result;
+        try { result = Picture.isValid(data, pic); } catch(e) { result = 'ERR: '+e.message; }
+        const cls = (result === expected) ? 'ok' : 'fail';
+        renderRow(tb, [
+            {v:data, cls:'data'}, {v:pic, cls:'pic'},
+            {v: result + ' ' + ((result === expected) ? '&#10004;' : '&#10008; expected ' + expected), cls:'result '+cls}
+        ]);
+    });
+}
+
+// ===================== INIT =====================
+
+renderNumbers();
+renderStrings();
+renderDates();
+renderTimes();
+renderPatterns();
+renderValidation();
+
+</script>
+</body>
+</html>
