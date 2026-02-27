@@ -3,10 +3,11 @@
 [![GitHub Repo](https://img.shields.io/badge/GitHub-gray?logo=github)](https://github.com/frikimirinda/picture)
 [![GitHub Repo](https://img.shields.io/badge/npm-gray?logo=npm)](https://www.npmjs.com/package/@frikimirinda/picture)
 
-
-
-
 **Picture** is a small-but-powerful JavaScript class for formatting, deformatting, and validating data using **picture strings** — compact format descriptors for strings, numbers, dates, times, and patterns.
+
+#### [You can try a live sample here](https://frikimirinda.github.io/picture/test/test_picture_01.html) 
+
+#### [and here](https://frikimirinda.github.io/picture/test/test_picture_02.html)
 
 ## Overview
 
@@ -27,6 +28,3 @@ You can view all documentation on [picture.md](docs/picture.md)
 <p align="center">
   <a href="https://www.mirinda.es" title="go to mirinda.es"><img src="test/assets/mirinda_es.svg" width="227"></a>
 </p>
-
-
-
